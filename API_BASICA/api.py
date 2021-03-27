@@ -1,12 +1,16 @@
 from flask import Flask,jsonify
 import json
 
-
 app = Flask(__name__)
-
 
 content = open('quotes.json','r')
 load_content = json.load(content)
+
+@app.route('/',methods=['GET'])
+def pageOne():
+    return ('1 - add /quotes(will return the complete list)|'
+            '2 - add /quotes/id(where the "id" will be the index of the list you choose)|'
+            '3 - add /quotes/legth(this page will count how many elements are in that list)')
 
 
 @app.route('/quotes',methods=['GET'])
